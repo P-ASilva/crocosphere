@@ -17,24 +17,14 @@ class CrocoBoy():
         self.objs, self.vel = self.s0, np.array([0,0])
 
 class MassCenter():
-    def __init__(self,x,y,g):
-        self.center = np.array(x,y)
+    def __init__(self,center,g,size):
+        self.center = center
         self.g = g
 
-
-class Stage1():
-    def __init__(self):
-        pass
-
-    def endstage(self):
-        pass
-
-class Stage2():
-    def __init__(self):
-        pass
-    
-    def endstage(self):
-        pass
+class Goal():
+    def __init__(self,x,y,size):
+        self.objs = np.array([x,y])
+        self.size = size
 
 pygame.init()
 
@@ -46,7 +36,9 @@ FPS = 60
 
 BLACK = (0, 0, 0)
 
+planeta = np.array([300,200]) 
 personagem = CrocoBoy()
+# goal = Goal()
 
 # Inicializar posicoes
 
@@ -56,7 +48,7 @@ k = 1000
 
 a = np.array([0, 0.2])
 
-planeta = np.array([300,200]) 
+
 lua = np.array([300,250])
 
 # Personagem
@@ -70,7 +62,7 @@ while rodando:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             rodando = False
-        if event.type == pygame.MOUSEBUTTONDOWN:
+        if event.type == pygame.MOUSEBUTTONDOWN and personagem.vel[0] == 0 and personagem.vel[1] == 0:
             print('click')
             y = pygame.mouse.get_pos()
             yv = y - personagem.objs
@@ -80,7 +72,10 @@ while rodando:
 
     if personagem.objs[0] < 10 or personagem.objs[0]>1270 or personagem.objs[1]<10 or personagem.objs[1]>710: # Se eu chegar ao limite da tela, reinicio a posição do personagem
         personagem.reset()
-        
+    '''
+    if personagem.objs[0] == goal.objs[0] and personagem.objs[0] == goal.objs[1]:
+        pass
+    '''        
 
     # Controlar frame rate
     clock.tick(FPS)
