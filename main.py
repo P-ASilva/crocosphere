@@ -16,9 +16,30 @@ class CrocoBoy():
     def reset(self):
         self.objs, self.vel = self.s0, np.array([0,0])
 
+class MassCenter():
+    def __init__(self,x,y,g):
+        self.center = np.array(x,y)
+        self.g = g
+
+
+class Stage1():
+    def __init__(self):
+        pass
+
+    def endstage(self):
+        pass
+
+class Stage2():
+    def __init__(self):
+        pass
+    
+    def endstage(self):
+        pass
+
 pygame.init()
 
 # Tamanho da tela e definição do FPS
+
 screen = pygame.display.set_mode((1280, 720))
 clock = pygame.time.Clock()
 FPS = 60 
@@ -43,6 +64,7 @@ imagem = pygame.Surface((5, 5))  # Tamanho do personagem
 imagem.fill(personagem.color)  # Cor do personagem
 
 rodando = True
+
 while rodando:
     # Capturar eventos
     for event in pygame.event.get():
@@ -56,7 +78,7 @@ while rodando:
         
             personagem.vel = 5*yv/mv
 
-    if personagem.objs[0] < 10 or personagem.objs[0]>390 or personagem.objs[1]<10 or personagem.objs[1]>390: # Se eu chegar ao limite da tela, reinicio a posição do personagem
+    if personagem.objs[0] < 10 or personagem.objs[0]>1270 or personagem.objs[1]<10 or personagem.objs[1]>710: # Se eu chegar ao limite da tela, reinicio a posição do personagem
         personagem.reset()
         
 
