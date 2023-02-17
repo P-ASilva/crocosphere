@@ -6,8 +6,7 @@ class CrocoBoy():
     def __init__(self):
         self.color = (30, 200, 20)
         self.vel = np.array([0,0])
-        self.s0 = np.array([50,200])
-        self.objs = self.s0
+        self.objs = np.array([0,0])
         self.size = 5
     
     def rect(self):
@@ -16,12 +15,17 @@ class CrocoBoy():
     def collide(self,objects,goal=None):
         for object in objects:
             if (self.objs[0]**2 - object.center[0]**2 + self.objs[1]**2 - object.center[1]**2)**0.5  <= self.size + object.radius :
-                print('COLLIDED')
-                self.reset()
+                return "FAILURE"
 
-    def reset(self):
-        self.objs, self.vel = self.s0, np.array([0,0])
+    def death(self,stage):
+        self.vel = np.array([0,0])
+        self.objs = stage.spawn
 
+class Stage():
+    def __init__(self, planetas,spawn):
+        self.planetas = planetas
+        self.spawn = spawn
+        
 class MassCenter():
     planetas = []
     def __init__(self,center,radius,image,screen,k):

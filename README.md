@@ -7,7 +7,7 @@
         - Três centros de massa para o nivel um. ( dois deles serão um planeta com uma lua)
         - Quatro para o nivel dois. (um sol, com força g alta o resto é planeta)
         - Cinco para o nivel três. (adicionar areas de repulsão/colisão)
-    - Transformar centros de massa em classes funcionais.
+    - Transformar centros de massa em classes funcionais. # DONE
     - Visual (só depois de fazer pelo menos um nivel cm base nessa estrutura)
 
 - Descritivo do Projeto:

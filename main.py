@@ -15,25 +15,26 @@ FPS = 60
 
 BLACK = (0, 0, 0)
 
-planeta = np.array([300,200]) 
-personagem = CrocoBoy()
 
-# goal = Goal()
-
-# Inicializar posicoes
-
-personagem.objs = personagem.s0
+# inicializar variáveis;
 
 k = 1000
 
-a = np.array([0, 0.2])
+# Inicializar posicoes;
 
+personagem = CrocoBoy()
+planeta1 = MassCenter(np.array([300,200]),25,'yellow',screen,k)
+lua1 = MassCenter(np.array([300,250]),10,'blue',screen,k/2)
+espaco = [planeta1,lua1]
 
-lua = np.array([300,250])
+# Personagem;
 
-# Personagem
 imagem = pygame.Surface((5, 5))  # Tamanho do personagem
 imagem.fill(personagem.color)  # Cor do personagem
+
+# Inicializa Fases;
+
+stage = Stage(espaco,np.array([50,200]))
 
 rodando = True
 
@@ -50,22 +51,16 @@ while rodando:
             personagem.vel = 10*yv/mv
 
     if personagem.objs[0] < 10 or personagem.objs[0]>1270 or personagem.objs[1]<10 or personagem.objs[1]>710: # Se eu chegar ao limite da tela, reinicio a posição do personagem
-        personagem.reset()
+        personagem.death(stage)   
 
-    '''
-    if personagem.objs[0] == goal.objs[0] and personagem.objs[0] == goal.objs[1]:
-        pass
-    '''        
-
-    planeta1 = MassCenter(planeta,25,'yellow',screen,k)
-    lua1 = MassCenter(lua,10,'blue',screen,k/2)
-    espaco = [planeta1,lua1]
 
     # Controlar frame rate
     clock.tick(FPS)
 
     # Processar posicoes
-    personagem.collide(espaco)
+    if personagem.collide(espaco) == "FAILURE":
+        personagem.death(stage)
+        
     if personagem.vel[0] != 0 and personagem.vel[1] != 0:
         a = 0
         for corpo_celeste in espaco:
