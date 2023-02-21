@@ -12,43 +12,54 @@ class CrocoBoy():
     def rect(self):
         return pygame.Rect(self.objs, (10, 10))
     
-    def collide(self,objects,goal=None):
+    def collide(self,objects,goal=None): # Verifica se houve colisão com o objetivo,planeta ou fim da tela.
         for object in objects:
-            if (self.objs[0]**2 - object.center[0]**2 + self.objs[1]**2 - object.center[1]**2)**0.5  <= self.size + object.radius :
-                return "FAILURE"
+            if ( (self.objs[0] - object.center[0])**2 + (self.objs[1]- object.center[1])**2 )**0.5  <= self.size + object.radius or self.objs[0] < 10 or self.objs[0] > 1270 or self.objs[1] < 10 or self.objs[1] > 710:
+                return "FAILURE"    
         if goal != None:
-            if (self.objs[0]**2 - goal.center[0]**2 + self.objs[1]**2 - goal.center[1]**2)**0.5  <= self.size + goal.radius :
+            if ( (self.objs[0] - goal.center[0])**2 + (self.objs[1] - goal.center[1])**2 )**0.5  <= self.size + goal.radius :
                 return "SUCCESS"
+    
+    
+    def em_orbita(self,object):
+        if ( (self.objs[0] - object.center[0])**2 + (self.objs[1]- object.center[1])**2 )**0.5  <= (object.radius)**2 :
+            return object.gravitational_force(self.objs)
+        else:
+            return 0
 
 
     def death(self,stage):
         self.vel = np.array([0,0])
         self.objs = stage.spawn
 
+
 class Stage():
     def __init__(self, planetas,spawn):
         self.planetas = planetas
         self.spawn = spawn
-        
+
+
 class MassCenter():
-    def __init__(self,center,radius,image,screen,k):
+    def __init__(self,center,radius,image,screen,k, orbital = False, ancora = None):
         self.center = center
         self.color = image
         self.radius = radius 
         self.screen = screen
         self.k = k
+        self.orbital = orbital
+        self.ancora = ancora
 
     def draw(self):
         pygame.draw.circle(surface = self.screen, radius =self.radius,center=self.center,color=self.color)
 
-    def gravitational_force(self,pos):
+    def gravitational_force(self,pos): # Calcula a aceleração Gravitacinal.
 
         dp = self.center - pos
-        d = np.linalg.norm(dp) # modulo1
+        d = np.linalg.norm(dp)
         a = (dp/d)*self.k/d**2
 
         return a
-
+    
 
 class Goal():
     def __init__(self,objs,size,screen):
