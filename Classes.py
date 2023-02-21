@@ -16,6 +16,10 @@ class CrocoBoy():
         for object in objects:
             if (self.objs[0]**2 - object.center[0]**2 + self.objs[1]**2 - object.center[1]**2)**0.5  <= self.size + object.radius :
                 return "FAILURE"
+        if goal != None:
+            if (self.objs[0]**2 - goal.center[0]**2 + self.objs[1]**2 - goal.center[1]**2)**0.5  <= self.size + goal.radius :
+                return "SUCCESS"
+
 
     def death(self,stage):
         self.vel = np.array([0,0])
@@ -27,7 +31,6 @@ class Stage():
         self.spawn = spawn
         
 class MassCenter():
-    planetas = []
     def __init__(self,center,radius,image,screen,k):
         self.center = center
         self.color = image
@@ -46,14 +49,13 @@ class MassCenter():
 
         return a
 
-    """
-    def planetas(self):
-        return planetas
-    """
-
-
 
 class Goal():
-    def __init__(self,x,y,size):
-        self.objs = np.array([x,y])
-        self.size = size
+    def __init__(self,objs,size,screen):
+        self.center = objs
+        self.radius = size
+        self.color = "yellow"
+        self.screen = screen
+    
+    def draw(self):
+        pygame.draw.circle(surface = self.screen, radius = self.radius, center = self.center, color=self.color)
