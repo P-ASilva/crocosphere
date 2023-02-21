@@ -21,29 +21,33 @@ BLACK = (0, 0, 0)
 k = 2000
 
 # Inicializar posicoes;
-
+goal_1 = Goal(np.array([1100,400]),10,screen)
+goal_2 = Goal(np.array([600,50]),10,screen)
+goals = [goal_1,goal_1,goal_2]
 
 planeta = MassCenter(np.array([750,300]),25,'purple',screen,k)
 lua = MassCenter(np.array([750,400]),10,'blue',screen,k/2)
 espaco = [planeta,lua]
 espaco2 = [planeta]
-goal = Goal(np.array([1100,400]),10,screen)
+sol = MassCenter(np.array([0,0]),500,'red',screen,k*150)
+espaco3 = [sol]
+
 
 # Personagem;
 
 personagem = CrocoBoy()
-imagem = pygame.Surface((5, 5))  # Tamanho do personagem
+imagem = pygame.Surface((personagem.size, personagem.size))  # Tamanho do personagem
 imagem.fill(personagem.color)  # Cor do personagem
 
 # Inicializa Fases;
 
 stage_1 = Stage(espaco2,np.array([100,250]))
 stage_2 = Stage(espaco,np.array([320,360])) 
-# stage_3 = Stage()
-# stage_4 = Stage()
-# stage_5 = Stage()
+stage_3 = Stage(espaco3,np.array([400,600]))
+stage_4 = Stage(espaco2,np.array([100,250]))
+stage_5 = Stage(espaco2,np.array([100,250]))
 
-stages = [stage_1,stage_2]
+stages = [stage_1,stage_2,stage_3,stage_4,stage_5]
 stage_index = 0
 stage = stages[stage_index]
 
@@ -65,7 +69,7 @@ while rodando:
             personagem.vel = 90*yv/mv
         
     # Captura de colisão
-    collision_result = personagem.collide(stage.planetas,goal)
+    collision_result = personagem.collide(stage.planetas,goals[stage_index])
 
     if collision_result == "FAILURE":
         personagem.death(stage)
@@ -100,7 +104,7 @@ while rodando:
     # Obstacles
     for corpo_celeste in stage.planetas:
         corpo_celeste.draw()
-    goal.draw()
+    goals[stage_index].draw()
 
     # Update!
     pygame.display.update()
