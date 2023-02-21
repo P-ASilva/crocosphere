@@ -22,51 +22,80 @@ k = 1000
 
 # Inicializar posicoes;
 
-personagem = CrocoBoy()
-planeta1 = MassCenter(np.array([300,200]),25,'yellow',screen,k)
-lua1 = MassCenter(np.array([300,250]),10,'blue',screen,k/2)
-espaco = [planeta1,lua1]
+
+planeta = MassCenter(np.array([500,200]),25,'yellow',screen,k)
+lua = MassCenter(np.array([500,300]),10,'blue',screen,k/2)
+espaco = [planeta,lua]
+espaco2 = [planeta]
+goal = Goal(np.array([1100,400]),10,screen)
 
 # Personagem;
 
+personagem = CrocoBoy()
 imagem = pygame.Surface((5, 5))  # Tamanho do personagem
 imagem.fill(personagem.color)  # Cor do personagem
+personagem.vel *= 100
 
 # Inicializa Fases;
 
-stage = Stage(espaco,np.array([50,200]))
+stage_1 = Stage(espaco,np.array([50,200]))
+stage_2 = Stage(espaco2,np.array([100,250]))
+# stage_3 = Stage()
+# stage_4 = Stage()
+# stage_5 = Stage()
+
+stages = [stage_1,stage_2]
+stage_index = 0
+stage = stages[stage_index]
+
+# Inicializa jogo
 
 rodando = True
 
 while rodando:
+    stage = stages[stage_index]
     # Capturar eventos
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             rodando = False
+
+        # if event.type == pygame: Level skip key
+        #     stage_index += 1
+        #     personagem.death(stage)
+
         if event.type == pygame.MOUSEBUTTONDOWN and personagem.vel[0] == 0 and personagem.vel[1] == 0:
             y = pygame.mouse.get_pos()
             yv = y - personagem.objs
             mv = np.linalg.norm(y)
         
             personagem.vel = 10*yv/mv
+        
+       
 
-    if personagem.objs[0] < 10 or personagem.objs[0]>1270 or personagem.objs[1]<10 or personagem.objs[1]>710: # Se eu chegar ao limite da tela, reinicio a posição do personagem
+    if personagem.objs[0] < 10 or personagem.objs[0] > 1270 or personagem.objs[1] < 10 or personagem.objs[1] > 710: # Se eu chegar ao limite da tela, reinicio a posição do personagem
         personagem.death(stage)   
 
+
+    collision_result = personagem.collide(espaco,goal)
+
+    if collision_result == "FAILURE":
+        personagem.death(stage)
+    elif collision_result == "SUCCESS":
+        stage_index += 1
 
     # Controlar frame rate
     clock.tick(FPS)
 
     # Processar posicoes
-    if personagem.collide(espaco) == "FAILURE":
-        personagem.death(stage)
         
     if personagem.vel[0] != 0 and personagem.vel[1] != 0:
         a = 0
         for corpo_celeste in espaco:
-            # dp = planeta - personagem.objs
-            # d = np.linalg.norm(dp)
-            # a = (dp/d)*k/d**2
+            '''
+            dp = planeta - personagem.objs
+            d = np.linalg.norm(dp)
+            a = (dp/d)*k/d**2
+            '''
             a += corpo_celeste.gravitational_force(personagem.objs)
         
 
@@ -84,6 +113,7 @@ while rodando:
     # Obstacles
     for corpo_celeste in espaco:
         corpo_celeste.draw()
+    goal.draw()
 
     # Update!
     pygame.display.update()
