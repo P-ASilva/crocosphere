@@ -1,6 +1,6 @@
 # Crocosphere
 
-# Autores Pedro Antônio e 
+# Autores Pedro Antônio e Gustavo Lindenberg
 
 - TASKS:
     - Divisão por niveis.
