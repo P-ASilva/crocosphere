@@ -15,6 +15,13 @@ FPS = 60
 
 BLACK = (0, 0, 0)
 
+sprites = {
+    'bola': pygame.image.load('croco-game/assets/sprites/bola_smol.png'),
+    'bg': pygame.image.load('croco-game/assets/sprites/bg.jpg'),
+    'planet': pygame.image.load('croco-game/assets/sprites/planet.png'),
+    'target': pygame.image.load('croco-game/assets/sprites/target.png'),
+}
+
 
 # inicializar variáveis;
 
@@ -95,16 +102,18 @@ while rodando:
     personagem.objs = personagem.objs + 0.1 * personagem.vel # s = s(-1) + mod*a
 
     # Desenhar fundo
-    screen.fill(BLACK)
+    bgrect = pygame.Rect([0,0], [1280,720])
+    screen.blit(sprites['bg'], bgrect)
 
     # Desenhar personagem
     rect = personagem.rect()  # First tuple is position, second is size.
-    screen.blit(imagem, rect)
+    screen.blit(sprites['bola'], rect)
 
     # Obstacles
     for corpo_celeste in stage.planetas:
         corpo_celeste.draw()
     goals[stage_index].draw()
+    #screen.blit(sprites['target'], (corpo_celeste.center[0], corpo_celeste.center[1]))
 
     # Update!
     pygame.display.update()
