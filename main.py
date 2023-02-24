@@ -109,8 +109,15 @@ while rodando:
     # Obstacles
     for corpo_celeste in stage.planetas:
         corpo_celeste.draw()
-    goals[stage_index].draw()
-    #screen.blit(sprites['target'], (corpo_celeste.center[0], corpo_celeste.center[1]))
+        if stage_index == 0:
+            planet = pygame.transform.scale(sprites['planet'], (100,100))
+            screen.blit(planet, (750-50,300-50))
+        elif stage_index == 1:
+            planet = pygame.transform.scale(sprites['planet'], (100,100))
+            screen.blit(planet, (750-50,300-50))
+
+    #goals[stage_index].draw()
+    screen.blit(sprites['target'], ((goals[stage_index].center[0] - goals[stage_index].radius), (goals[stage_index].center[1] - goals[stage_index].radius)))
 
     # Update!
     pygame.display.update()

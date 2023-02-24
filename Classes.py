@@ -22,7 +22,7 @@ class CrocoBoy():
     
     
     def em_orbita(self,object):
-        if ( (self.objs[0] - object.center[0])**2 + (self.objs[1]- object.center[1])**2 )**0.5  <= (object.radius)**2 :
+        if ( (self.objs[0] - object.center[0])**2 + (self.objs[1]- object.center[1])**2 )**0.5  <= (object.radius)*4 :
             return object.gravitational_force(self.objs)
         else:
             return 0
