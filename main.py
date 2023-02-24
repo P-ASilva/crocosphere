@@ -22,6 +22,8 @@ sprites = {
     'bg': pygame.image.load('croco-game/assets/sprites/bg.jpg'),
     'planet': pygame.image.load('croco-game/assets/sprites/planet.png'),
     'target': pygame.image.load('croco-game/assets/sprites/target.png'),
+    'lua': pygame.image.load('croco-game/assets/sprites/lua.png'),
+    'sol': pygame.image.load('croco-game/assets/sprites/sol.png'),
 }
 
 
@@ -32,18 +34,18 @@ goal_2 = Goal(np.array([1050,150]),15,screen)
 goal_3 = Goal(np.array([900,400]),15,screen)
 goals = [goal_1,goal_2,goal_3]
 
-planeta_1 = MassCenter(np.array([750,300]),25,'purple',screen)
-lua_1 = MassCenter(np.array([780,250]),10,'blue',screen)
+planeta_1 = MassCenter(np.array([750,300]),25,'purple', 'planet', screen)
+lua_1 = MassCenter(np.array([780,250]),10,'blue', 'lua', screen)
 espaco_1 = [planeta_1,lua_1]
 
-planeta_2 = MassCenter(np.array([650,300]),25,'purple',screen)
-lua_2 = MassCenter(np.array([680,250]),10,'blue',screen)
-planeta_3 = MassCenter(np.array([700,600]),100,'pink',screen)
+planeta_2 = MassCenter(np.array([650,300]),25,'purple', 'planeta', screen)
+lua_2 = MassCenter(np.array([680,250]),10,'blue', 'lua', screen)
+planeta_3 = MassCenter(np.array([700,600]),100,'pink', 'planeta', screen)
 espaco_2 = [planeta_2,lua_2,planeta_3]
 
-sol = MassCenter(np.array([0,0]),500,'red',screen)
-planeta_4 = MassCenter(np.array([800,250]),100,'pink',screen)
-lua_3 = MassCenter(np.array([560,450]),20,'blue',screen)
+sol = MassCenter(np.array([0,0]),500,'red','sol', screen)
+planeta_4 = MassCenter(np.array([800,250]),100,'pink', 'planet', screen)
+lua_3 = MassCenter(np.array([560,450]),20,'blue', 'lua', screen)
 espaco_3 = [sol,planeta_4,lua_3]
 
 
@@ -58,7 +60,7 @@ stage_2 = Stage(espaco_2,np.array([320,360]))
 stage_3 = Stage(espaco_3,np.array([400,600]))
 
 stages = [stage_1,stage_2,stage_3]
-stage_index = 0
+stage_index = 2
 stage = stages[stage_index]
 
 # Inicializa jogo;
@@ -112,11 +114,15 @@ while rodando:
 
     # Desenhar obstaculos
     for corpo_celeste in stage.planetas:
-        corpo_celeste.draw()
-        planet = pygame.transform.scale(sprites['planet'], (corpo_celeste.radius*8, corpo_celeste.radius*8))
-        screen.blit(planet, (corpo_celeste.center[0]-4*corpo_celeste.radius,corpo_celeste.center[1]-4*corpo_celeste.radius))
-
-
+        if corpo_celeste.type == 'planet':
+            planet = pygame.transform.scale(sprites['planet'], (corpo_celeste.radius*8, corpo_celeste.radius*8))
+            screen.blit(planet, (corpo_celeste.center[0]-4*corpo_celeste.radius,corpo_celeste.center[1]-4*corpo_celeste.radius))
+        elif corpo_celeste.type == 'lua':
+            planet = pygame.transform.scale(sprites['lua'], (corpo_celeste.radius*8, corpo_celeste.radius*8))
+            screen.blit(planet, (corpo_celeste.center[0]-4*corpo_celeste.radius,corpo_celeste.center[1]-4*corpo_celeste.radius))
+        elif corpo_celeste.type == 'sol':
+            planet = pygame.transform.scale(sprites['sol'], (corpo_celeste.radius*4, corpo_celeste.radius*4))
+            screen.blit(planet, (corpo_celeste.center[0]-2.4*corpo_celeste.radius,corpo_celeste.center[1]-2.4*corpo_celeste.radius))
     
     # Desenhar objetivo
     screen.blit(sprites['target'], ((goals[stage_index].center[0] - goals[stage_index].radius), (goals[stage_index].center[1] - goals[stage_index].radius)))
