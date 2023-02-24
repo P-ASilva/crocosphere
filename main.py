@@ -29,7 +29,7 @@ sprites = {
 
 goal_1 = Goal(np.array([1100,400]),10,screen)
 goal_2 = Goal(np.array([1050,150]),10,screen)
-goal_3 = Goal(np.array([600,50]),10,screen)
+goal_3 = Goal(np.array([900,400]),10,screen)
 goals = [goal_1,goal_2,goal_3]
 
 planeta_1 = MassCenter(np.array([750,300]),25,'purple',screen)
@@ -42,7 +42,9 @@ planeta_3 = MassCenter(np.array([700,600]),100,'pink',screen)
 espaco_2 = [planeta_2,lua_2,planeta_3]
 
 sol = MassCenter(np.array([0,0]),500,'red',screen)
-espaco_3 = [sol]
+planeta_4 = MassCenter(np.array([800,250]),100,'pink',screen)
+lua_3 = MassCenter(np.array([560,450]),20,'blue',screen)
+espaco_3 = [sol,planeta_4,lua_3]
 
 
 # Personagem;
@@ -68,7 +70,6 @@ while rodando:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             rodando = False
-
         if event.type == pygame.MOUSEBUTTONDOWN and personagem.vel[0] == 0 and personagem.vel[1] == 0:
             y = pygame.mouse.get_pos()
             yv = y - personagem.objs
