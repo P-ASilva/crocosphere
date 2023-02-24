@@ -2,33 +2,10 @@
 
 # Autores Pedro Antônio e Gustavo Lindenberg
 
-- TASKS:
-    - Divisão por niveis.
-        - Três centros de massa para o nivel um. ( dois deles serão um planeta com uma lua)
-        - Quatro para o nivel dois. (um sol, com força g alta o resto é planeta)
-        - Cinco para o nivel três. (adicionar areas de repulsão/colisão)
-    - Transformar centros de massa em classes funcionais. # DONE
-    - Visual (só depois de fazer pelo menos um nivel cm base nessa estrutura)
+ - Como jogar:
+    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaah
+    
 
-- Descritivo do Projeto:
-
-# Projeto: jogo estilo "Angry Birds no espaço"
-
-Neste projeto, faremos um jogo no estilo "Angry Birds no espaço".
-
-O jogo funciona da seguinte forma:
-
-1. O objetivo é acertar um objeto em um alvo (o grupo pode escolher que tipo de objeto se trata).
-2. O jogador usa um canhão para disparar o objeto, e manipula a direção e módulo da velocidade inicial do objeto usando o *mouse*.
-3. O objeto, em princípio, navega em movimento uniforme através do espaço.
-4. Alguns corpos celestes realizam atração gravitacional, desviando a rota do objeto.
-5. Níveis mais avançados têm mais de um corpo celeste. Pense sobre o que acontece quando há duas acelerações gravitacionais atuando sobre o objeto lançado.
-6. Use texturas para caracterizar os elementos do jogo!
-
-Anotações importantes:
-
-1. O grupo de projeto deve definir todos os elementos e parâmetros do jogo pensando em melhorar sua jogabilidade.
-2. O grupo deve enviar um link para o repositório GitHub onde está localizado o jogo.
 
 **ENTREGAS**
 * Link para o repositório onde está o jogo.

@@ -15,6 +15,8 @@ FPS = 60
 
 BLACK = (0, 0, 0)
 
+# Inicializar Sprites;
+
 sprites = {
     'bola': pygame.image.load('croco-game/assets/sprites/bola_smol.png'),
     'bg': pygame.image.load('croco-game/assets/sprites/bg.jpg'),
@@ -23,28 +25,23 @@ sprites = {
 }
 
 
-# inicializar variáveis;
-
-k = 2000
-
 # Inicializar posicoes;
+
 goal_1 = Goal(np.array([1100,400]),10,screen)
 goal_2 = Goal(np.array([600,50]),10,screen)
 goals = [goal_1,goal_1,goal_2]
 
-planeta = MassCenter(np.array([750,300]),25,'purple',screen,k)
-lua = MassCenter(np.array([750,400]),10,'blue',screen,k/2)
+planeta = MassCenter(np.array([750,300]),25,'purple',screen)
+lua = MassCenter(np.array([750,400]),10,'blue',screen)
 espaco = [planeta,lua]
 espaco2 = [planeta]
-sol = MassCenter(np.array([0,0]),500,'red',screen,k*150)
+sol = MassCenter(np.array([0,0]),500,'red',screen)
 espaco3 = [sol]
 
 
 # Personagem;
 
 personagem = CrocoBoy()
-imagem = pygame.Surface((personagem.size, personagem.size))  # Tamanho do personagem
-imagem.fill(personagem.color)  # Cor do personagem
 
 # Inicializa Fases;
 
@@ -106,7 +103,7 @@ while rodando:
     screen.blit(sprites['bg'], bgrect)
 
     # Desenhar personagem
-    rect = personagem.rect()  # First tuple is position, second is size.
+    rect = personagem.rect()
     screen.blit(sprites['bola'], rect)
 
     # Obstacles

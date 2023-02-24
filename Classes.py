@@ -7,7 +7,7 @@ class CrocoBoy():
         self.color = (30, 200, 20)
         self.vel = np.array([0,0])
         self.objs = np.array([0,0])
-        self.size = 25
+        self.size = 12
     
     def rect(self):
         return pygame.Rect(self.objs, (self.size, self.size))
@@ -40,12 +40,12 @@ class Stage():
 
 
 class MassCenter():
-    def __init__(self,center,radius,image,screen,k):
+    def __init__(self,center,radius,image,screen):
         self.center = center
         self.color = image
         self.radius = radius 
         self.screen = screen
-        self.k = k
+        self.k = 1000*radius
 
     def draw(self):
         pygame.draw.circle(surface = self.screen, radius =self.radius,center=self.center,color=self.color)
