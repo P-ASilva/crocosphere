@@ -110,11 +110,11 @@ while rodando:
     for corpo_celeste in stage.planetas:
         corpo_celeste.draw()
         if stage_index == 0:
-            planet = pygame.transform.scale(sprites['planet'], (100,100))
-            screen.blit(planet, (750-50,300-50))
+            planet = pygame.transform.scale(sprites['planet'], (200,200))
+            screen.blit(planet, (750-100,300-100))
         elif stage_index == 1:
-            planet = pygame.transform.scale(sprites['planet'], (100,100))
-            screen.blit(planet, (750-50,300-50))
+            planet = pygame.transform.scale(sprites['planet'], (200,200))
+            screen.blit(planet, (750-100,300-100))
 
     #goals[stage_index].draw()
     screen.blit(sprites['target'], ((goals[stage_index].center[0] - goals[stage_index].radius), (goals[stage_index].center[1] - goals[stage_index].radius)))
