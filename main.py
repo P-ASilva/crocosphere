@@ -113,12 +113,10 @@ while rodando:
     # Desenhar obstaculos
     for corpo_celeste in stage.planetas:
         corpo_celeste.draw()
-        if stage_index == 0:
-            planet = pygame.transform.scale(sprites['planet'], (200,200))
-            screen.blit(planet, (750-100,300-100))
-        elif stage_index == 1:
-            planet = pygame.transform.scale(sprites['planet'], (200,200))
-            screen.blit(planet, (750-100,300-100))
+        planet = pygame.transform.scale(sprites['planet'], (corpo_celeste.radius*8, corpo_celeste.radius*8))
+        screen.blit(planet, (corpo_celeste.center[0]-4*corpo_celeste.radius,corpo_celeste.center[1]-4*corpo_celeste.radius))
+
+
     
     # Desenhar objetivo
     screen.blit(sprites['target'], ((goals[stage_index].center[0] - goals[stage_index].radius), (goals[stage_index].center[1] - goals[stage_index].radius)))
