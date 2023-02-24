@@ -24,15 +24,17 @@ sprites = {
     'target': pygame.image.load('croco-game/assets/sprites/target.png'),
     'lua': pygame.image.load('croco-game/assets/sprites/lua.png'),
     'sol': pygame.image.load('croco-game/assets/sprites/sol.png'),
+    'win': pygame.image.load('croco-game/assets/sprites/win.png'),
 }
 
 
 # Inicializar posicoes;
 
-goal_1 = Goal(np.array([1100,400]),15,screen)
-goal_2 = Goal(np.array([1050,150]),15,screen)
-goal_3 = Goal(np.array([900,400]),15,screen)
-goals = [goal_1,goal_2,goal_3]
+goal_1 = Goal(np.array([1100,400]),10,screen)
+goal_2 = Goal(np.array([1050,150]),10,screen)
+goal_3 = Goal(np.array([900,400]),10,screen)
+goal_4 = Goal(np.array([1300,800]),10,screen)
+goals = [goal_1,goal_2,goal_3, goal_4]
 
 planeta_1 = MassCenter(np.array([750,300]),25,'purple', 'planet', screen)
 lua_1 = MassCenter(np.array([780,250]),10,'blue', 'lua', screen)
@@ -48,6 +50,8 @@ planeta_4 = MassCenter(np.array([800,250]),100,'pink', 'planet', screen)
 lua_3 = MassCenter(np.array([560,450]),20,'blue', 'lua', screen)
 espaco_3 = [sol,planeta_4,lua_3]
 
+win = MassCenter(np.array([0,0]), 0, 'red', 'win', screen)
+espaco_4 = [win]
 
 # Personagem;
 
@@ -58,8 +62,9 @@ personagem = CrocoBoy()
 stage_1 = Stage(espaco_1,np.array([100,250]))
 stage_2 = Stage(espaco_2,np.array([320,360])) 
 stage_3 = Stage(espaco_3,np.array([400,600]))
+stage_4 = Stage(espaco_4,np.array([0,0]))
 
-stages = [stage_1,stage_2,stage_3]
+stages = [stage_1,stage_2,stage_3, stage_4]
 stage_index = 0
 stage = stages[stage_index]
 
@@ -123,6 +128,9 @@ while rodando:
         elif corpo_celeste.type == 'sol':
             planet = pygame.transform.scale(sprites['sol'], (corpo_celeste.radius*4, corpo_celeste.radius*4))
             screen.blit(planet, (corpo_celeste.center[0]-2.4*corpo_celeste.radius,corpo_celeste.center[1]-2.4*corpo_celeste.radius))
+        elif corpo_celeste.type == 'win':
+            planet = pygame.transform.scale(sprites['win'], (1280, 720))
+            screen.blit(planet, (0, 0))
     
     # Desenhar objetivo
     screen.blit(sprites['target'], ((goals[stage_index].center[0] - goals[stage_index].radius), (goals[stage_index].center[1] - goals[stage_index].radius)))
