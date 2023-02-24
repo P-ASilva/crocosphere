@@ -32,7 +32,7 @@ goal_2 = Goal(np.array([600,50]),10,screen)
 goals = [goal_1,goal_1,goal_2]
 
 planeta = MassCenter(np.array([750,300]),25,'purple',screen)
-lua = MassCenter(np.array([750,400]),10,'blue',screen)
+lua = MassCenter(np.array([780,200]),10,'blue',screen)
 espaco = [planeta,lua]
 espaco2 = [planeta]
 sol = MassCenter(np.array([0,0]),500,'red',screen)

@@ -24,6 +24,8 @@ class CrocoBoy():
     def em_orbita(self,object):
         if ( (self.objs[0] - object.center[0])**2 + (self.objs[1]- object.center[1])**2 )**0.5  <= (object.radius)*4 :
             return object.gravitational_force(self.objs)
+        elif ( (self.objs[0] - object.center[0])**2 + (self.objs[1]- object.center[1])**2 )**0.5  <= (object.radius)*8 :
+            return object.gravitational_force(self.objs)/2
         else:
             return 0
 
@@ -45,6 +47,8 @@ class MassCenter():
         self.color = image
         self.radius = radius 
         self.screen = screen
+        if radius < 25:
+            self.k = 2000*radius
         self.k = 1000*radius
 
     def draw(self):
