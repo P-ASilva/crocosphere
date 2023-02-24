@@ -1,15 +1,15 @@
 import numpy as np
 import pygame 
 
+# Classe do personagem 
 
 class CrocoBoy():
     def __init__(self):
-        self.color = (30, 200, 20)
         self.vel = np.array([0,0])
         self.objs = np.array([0,0])
         self.size = 12
     
-    def rect(self):
+    def rect(self): # Criado como referência para colisão.
         return pygame.Rect(self.objs, (self.size, self.size))
     
     def collide(self,objects,goal=None): # Verifica se houve colisão com o objetivo,planeta ou fim da tela.
@@ -18,17 +18,15 @@ class CrocoBoy():
                 return "FAILURE"    
         if goal != None:
             if ( (self.objs[0] - goal.center[0])**2 + (self.objs[1] - goal.center[1])**2 )**0.5  <= self.size + goal.radius :
-                return "SUCCESS"
+                return "SUCCESS" 
     
-    
-    def em_orbita(self,object):
-        if ( (self.objs[0] - object.center[0])**2 + (self.objs[1]- object.center[1])**2 )**0.5  <= (object.radius)*4 :
+    def em_orbita(self,object): # Identifica se o personagem está em órbita e que tipo de órbita é.
+        if ( (self.objs[0] - object.center[0])**2 + (self.objs[1]- object.center[1])**2 )**0.5  <= (object.radius)*object.k/250:
             return object.gravitational_force(self.objs)
-        elif ( (self.objs[0] - object.center[0])**2 + (self.objs[1]- object.center[1])**2 )**0.5  <= (object.radius)*8 :
+        elif ( (self.objs[0] - object.center[0])**2 + (self.objs[1]- object.center[1])**2 )**0.5  <= (object.radius)*object.k/25 :
             return object.gravitational_force(self.objs)/2
         else:
             return 0
-
 
     def death(self,stage):
         self.vel = np.array([0,0])
@@ -39,6 +37,8 @@ class Stage():
     def __init__(self, planetas,spawn):
         self.planetas = planetas
         self.spawn = spawn
+
+# Classe dos planetas
 
 
 class MassCenter():

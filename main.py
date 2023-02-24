@@ -28,15 +28,21 @@ sprites = {
 # Inicializar posicoes;
 
 goal_1 = Goal(np.array([1100,400]),10,screen)
-goal_2 = Goal(np.array([600,50]),10,screen)
-goals = [goal_1,goal_1,goal_2]
+goal_2 = Goal(np.array([1050,150]),10,screen)
+goal_3 = Goal(np.array([600,50]),10,screen)
+goals = [goal_1,goal_2,goal_3]
 
-planeta = MassCenter(np.array([750,300]),25,'purple',screen)
-lua = MassCenter(np.array([780,200]),10,'blue',screen)
-espaco = [planeta,lua]
-espaco2 = [planeta]
+planeta_1 = MassCenter(np.array([750,300]),25,'purple',screen)
+lua_1 = MassCenter(np.array([780,250]),10,'blue',screen)
+espaco_1 = [planeta_1,lua_1]
+
+planeta_2 = MassCenter(np.array([650,300]),25,'purple',screen)
+lua_2 = MassCenter(np.array([680,250]),10,'blue',screen)
+planeta_3 = MassCenter(np.array([700,600]),100,'pink',screen)
+
+espaco_2 = [planeta_2,lua_2,planeta_3]
 sol = MassCenter(np.array([0,0]),500,'red',screen)
-espaco3 = [sol]
+espaco_3 = [sol]
 
 
 # Personagem;
@@ -45,17 +51,15 @@ personagem = CrocoBoy()
 
 # Inicializa Fases;
 
-stage_1 = Stage(espaco2,np.array([100,250]))
-stage_2 = Stage(espaco,np.array([320,360])) 
-stage_3 = Stage(espaco3,np.array([400,600]))
-stage_4 = Stage(espaco2,np.array([100,250]))
-stage_5 = Stage(espaco2,np.array([100,250]))
+stage_1 = Stage(espaco_1,np.array([100,250]))
+stage_2 = Stage(espaco_2,np.array([320,360])) 
+stage_3 = Stage(espaco_3,np.array([400,600]))
 
-stages = [stage_1,stage_2,stage_3,stage_4,stage_5]
+stages = [stage_1,stage_2,stage_3]
 stage_index = 0
 stage = stages[stage_index]
 
-# Inicializa jogo
+# Inicializa jogo;
 
 rodando = True
 
@@ -87,7 +91,6 @@ while rodando:
     clock.tick(FPS)
 
     # Processar posicoes
-        
 
     if personagem.vel[0] != 0 and personagem.vel[1] != 0:
         a = 0
@@ -106,7 +109,7 @@ while rodando:
     rect = personagem.rect()
     screen.blit(sprites['bola'], rect)
 
-    # Obstacles
+    # Desenhar obstaculos
     for corpo_celeste in stage.planetas:
         corpo_celeste.draw()
         if stage_index == 0:
@@ -115,8 +118,8 @@ while rodando:
         elif stage_index == 1:
             planet = pygame.transform.scale(sprites['planet'], (200,200))
             screen.blit(planet, (750-100,300-100))
-
-    #goals[stage_index].draw()
+    
+    # Desenhar objetivo
     screen.blit(sprites['target'], ((goals[stage_index].center[0] - goals[stage_index].radius), (goals[stage_index].center[1] - goals[stage_index].radius)))
 
     # Update!

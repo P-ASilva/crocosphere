@@ -2,10 +2,13 @@
 
 # Autores Pedro Antônio e Gustavo Lindenberg
 
- - Como jogar:
+# Como jogar:
     aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaah
-    
 
+# Modelo Físico :
+    - Nosso modelo físico rebedeu diversos ajustes em relação ao demostrado em sala, principalmente no
+    que se diz ao alcance e força das orbitas. Primeiramente, modificamos o alcance das orbitas para serem baseados na constante usada em seu calculo (Nome de variável " k "), de forma que o personamgem principal seja afetado por uma orbita mais fraca quando se encontrar a uma distancia menor que o raio do planeta multiplicado por 25 alvos de k, e uma orbita mais forte quando estiver tão próximo quanto o raio do planeta multiplicado por 250 alvos de k. o valor de k foi dobrado para planetas muito pequenos, para melhorar a jogabilidade.
+    Referente ao calculo da aceleração gravitacional, utilizamos o modelo em sala ajustando k de acordo com a situação : a = (dp/d)*k/d**2, com o vetor a tendo a direção definada por um vetor normalizaddo, dado pela diferênça entre as posições dos objetos em questão e seu módulo multiplicado por k e dividido pelo quadrado da distância entre personagem e planeta, que é uma simplificação das leis da gravitação.
 
 **ENTREGAS**
 * Link para o repositório onde está o jogo.
@@ -15,9 +18,6 @@
 
 **RUBRICA**
 
-O projeto será avaliado usando a rubrica abaixo. Os níveis são cumulativos, isto é, para passar de um nível, *todos* os requisitos dele devem ser cumpridos. As rubricas foram inspiradas nos níveis da [Taxonomia de Bloom](https://cft.vanderbilt.edu/guides-sub-pages/blooms-taxonomy/).
-
-| Nível | Descrição | [Tax. de Bloom](https://cft.vanderbilt.edu/guides-sub-pages/blooms-taxonomy/) |
 | --- | --- | --- |
 | F | Não entregue ou entregue sem completar o `README.md` ou entregue sem adições em relação ao código visto em sala | Não fez |
 | E | O jogo foi entregue, mas o `README.md` não indica como instalar ou rodar o programa. | Entender (-) |
