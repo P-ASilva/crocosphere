@@ -38,9 +38,9 @@ planeta_1 = MassCenter(np.array([750,300]),25,'purple', 'planet', screen)
 lua_1 = MassCenter(np.array([780,250]),10,'blue', 'lua', screen)
 espaco_1 = [planeta_1,lua_1]
 
-planeta_2 = MassCenter(np.array([650,300]),25,'purple', 'planeta', screen)
+planeta_2 = MassCenter(np.array([650,300]),25,'purple', 'planet', screen)
 lua_2 = MassCenter(np.array([680,250]),10,'blue', 'lua', screen)
-planeta_3 = MassCenter(np.array([700,600]),100,'pink', 'planeta', screen)
+planeta_3 = MassCenter(np.array([700,600]),100,'pink', 'planet', screen)
 espaco_2 = [planeta_2,lua_2,planeta_3]
 
 sol = MassCenter(np.array([0,0]),500,'red','sol', screen)
@@ -60,7 +60,7 @@ stage_2 = Stage(espaco_2,np.array([320,360]))
 stage_3 = Stage(espaco_3,np.array([400,600]))
 
 stages = [stage_1,stage_2,stage_3]
-stage_index = 2
+stage_index = 0
 stage = stages[stage_index]
 
 # Inicializa jogo;
