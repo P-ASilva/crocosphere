@@ -42,10 +42,11 @@ class Stage():
 
 
 class MassCenter():
-    def __init__(self,center,radius,image,screen):
+    def __init__(self,center,radius,image,type, screen):
         self.center = center
         self.color = image
         self.radius = radius 
+        self.type = type
         self.screen = screen
         if radius < 25:
             self.k = 2000*radius
