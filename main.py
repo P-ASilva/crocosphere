@@ -27,9 +27,9 @@ sprites = {
 
 # Inicializar posicoes;
 
-goal_1 = Goal(np.array([1100,400]),10,screen)
-goal_2 = Goal(np.array([1050,150]),10,screen)
-goal_3 = Goal(np.array([900,400]),10,screen)
+goal_1 = Goal(np.array([1100,400]),15,screen)
+goal_2 = Goal(np.array([1050,150]),15,screen)
+goal_3 = Goal(np.array([900,400]),15,screen)
 goals = [goal_1,goal_2,goal_3]
 
 planeta_1 = MassCenter(np.array([750,300]),25,'purple',screen)
