@@ -65,7 +65,7 @@ stage_3 = Stage(espaco_3,np.array([400,600]))
 stage_4 = Stage(espaco_4,np.array([0,0]))
 
 stages = [stage_1,stage_2,stage_3, stage_4]
-stage_index = 2
+stage_index = 0
 stage = stages[stage_index]
 
 # Inicializa jogo;
