@@ -7,7 +7,7 @@ class CrocoBoy():
     def __init__(self):
         self.vel = np.array([0,0])
         self.objs = np.array([0,0])
-        self.size = 12
+        self.size = 12.5
     
     def rect(self): # Criado como referência para colisão.
         return pygame.Rect(self.objs, (self.size, self.size))
@@ -17,14 +17,14 @@ class CrocoBoy():
             if ( (self.objs[0] - object.center[0])**2 + (self.objs[1]- object.center[1])**2 )**0.5  <= self.size + object.radius or self.objs[0] < 10 or self.objs[0] > 1270 or self.objs[1] < 10 or self.objs[1] > 710:
                 return "FAILURE"    
         if goal != None:
-            if ( (self.objs[0] - goal.center[0])**2 + (self.objs[1] - goal.center[1])**2 )**0.5  <= self.size + goal.radius :
+            if ( (self.objs[0] - goal.center[0])**2 + (self.objs[1] - goal.center[1])**2 )**0.5  <= self.size + 1.5*goal.radius :
                 return "SUCCESS" 
     
     def em_orbita(self,object): # Identifica se o personagem está em órbita e que tipo de órbita é.
         if ( (self.objs[0] - object.center[0])**2 + (self.objs[1]- object.center[1])**2 )**0.5  <= (object.radius)*object.k/250:
             return object.gravitational_force(self.objs)
         elif ( (self.objs[0] - object.center[0])**2 + (self.objs[1]- object.center[1])**2 )**0.5  <= (object.radius)*object.k/25 :
-            return object.gravitational_force(self.objs)/2
+            return object.gravitational_force(self.objs)/4
         else:
             return 0
 

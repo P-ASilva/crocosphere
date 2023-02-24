@@ -39,8 +39,8 @@ espaco_1 = [planeta_1,lua_1]
 planeta_2 = MassCenter(np.array([650,300]),25,'purple',screen)
 lua_2 = MassCenter(np.array([680,250]),10,'blue',screen)
 planeta_3 = MassCenter(np.array([700,600]),100,'pink',screen)
-
 espaco_2 = [planeta_2,lua_2,planeta_3]
+
 sol = MassCenter(np.array([0,0]),500,'red',screen)
 espaco_3 = [sol]
 
